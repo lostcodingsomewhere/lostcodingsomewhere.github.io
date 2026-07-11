@@ -1,194 +1,249 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INUNI - Something Big is Coming Soon</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto+Mono&display=swap" rel="stylesheet">
-    <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-            font-family: 'Inter', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #000;
-            color: #fff;
-            overflow: hidden;
-        }
-        #particles-js {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-        .content {
-            text-align: center;
-            z-index: 3;
-            position: relative;
-        }
-        h1 {
-            font-size: 6vw;
-            margin: 0;
-            font-weight: 700;
-            letter-spacing: -0.03em;
-        }
-        .tagline {
-            font-size: 1.8vw;
-            margin: 10px 0;
-            font-weight: 400;
-            letter-spacing: 0.02em;
-            opacity: 0.9;
-        }
-        .contact {
-            position: absolute;
-            bottom: 20px;
-            width: 100%;
-            text-align: center;
-            font-size: 0.9em;
-            z-index: 3;
-        }
-        a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 600;
-            transition: opacity 0.3s ease;
-        }
-        a:hover {
-            opacity: 0.8;
-        }
-        .copyright {
-            margin-top: 10px;
-            font-size: 0.8em;
-            opacity: 0.7;
-        }
-        .particle {
-            position: absolute;
-            border-radius: 50%;
-            background: #fff;
-            opacity: 0.5;
-        }
-        #event-horizon {
-            position: absolute;
-            border-radius: 50%;
-            box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.3);
-            z-index: 2;
-        }
-    </style>
-</head>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1">
+<meta name="theme-color" content="#0D1015">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Training">
+<title>Training Spec</title>
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAFS0lEQVR4nO3dO3bVSBSG0WOvjnsCJISETIAR9Hh7BEzAoUMSJsAE6IC+cC1LunpUqUpHe0e9Vi+uHXz8Lj2Ap+jAp89ffrb+Htjv9eXrU+vvock3IOBraBH4YV9wLuLv316P+jao6MPHT5P/76i4q36RqYgFfA1TgdeMu8oHj4Us4msbi7tG2MU/cBizkLk3DLt01MU+TMisUSvsIh9yH7OQWeM+7BJR7/oAIVNKqbCft/5CMVPSfUN7nlNsClrM1FAi6tXTfvtCQqam2xFk7fFj1UKLmaPcGlu71IuDFjNH2xL1oqDFTCtro34YtDfj6MWSFhcfOawzraxpbzZoRw16sfToMRm0mOnNkqg3PymEHo0GbZ3p1aOVfhe0uxqcxVirk0cO60yv5tp8E7R15myGzY4utHWmd1ONusvRuR//Tv/VALz3O2h3Nvoj5nljdzwsNKkIulO3df77Hz8x13iOcNzgvIbHDgvdIWfn7QTdGTHvI2hSeXJ+7sdwnV0QLnf7U+IWmlQE3Qln5zIE3QExlyNoUhF0Y1Pr7IJwG0GTiqAbcnYuT9CNiLkOQZOKoBt4tM4uCLcTNKkI+mDOznUJ+kBirk/QpCLogyxdZxeE+wiaVAR9AGfn4wi6MjEfS9AdcX7eT9AVWefjCZpUBF2JdW5D0BWIuR1Bd8IFYRmCLsw6tyVoUhF0Qda5PUGTiqAL2bPOLgjLEXQBjhr9EDSpCHon69wXQZOKoHcosc4uCMsS9EaOGn0SNKkIegPr3C9Bk4qgVyq5zi4IyxP0Co4a/RM0qQh6Iet8DoImFUEvUGOdXRDWIegHHDXO5a/W38BVtfiNcoWfChZ6RqZ1vkLMEYImGUFPsM7nJOgRYj4vQZOKoAes87kJOqkrxhwh6DcyrfNVCfp/mWK+6jpHCDqdK8ccIeiIyLXOVyfoRK6+zhGCTrPOYv7l0kFniZk/Lh10Ftb5j8sGnWWdxfzWZYMmp0sGbZ3zuuQfwToihNq/acQ87pILTV6CrsA6tyPokxHzPEGTiqBPxDo/JujCap2fxbyMoElF0CdgnZcTdOfEvI6gC8rySP3MBN0x67yeoDsl5m0ETSqCLsS/X9gHQXdGzPsImlQE3RHrvJ+gCyhxfhZzGYImFUF3wDqXI+jGxFyWoHfy/kZfBN2QdS5P0I2IuQ5Bk4qgd9h6frbO9Qj6YGKuS9CkIugDWef6BL3R2vOzmI8haFIR9AGs83EEXZmYjyXoDby/0S9BV2SdjyfoSsTchqBJRdArLTk/W+d2BF2YmNsSNKkIuiDr3J6gV5g7P4u5D4ImFUEXYJ37IeidxNwXQS/k/Y1zEPQO1rk/gt5IzH16fn35+hQR8eGjH6mc063d15evTxZ6geH52Tr3S9AriblvgiaV54hfZ48I5+hHrHN/7s/PERb6odv5WcznIGhS+R20Y8c069yn4XEjwkI/JOZzGQ3aStO7qUbfBH0/3XAGw2YnjxxWml7NtfkuaCvNWYy1OrrQ7njQq7E7G/fc5SCVyaCtNL15tM4RDxZa1PRiScwRK44coqaVNe09DNpdD3qxpMVFC+3oQStLjxo3i48couZoa2OOWHnbTtQcZUvMERGbzsefPn/5efvv79+8jUY592O55fpt04OV+y9krSllb8wRO54UipqSSsQcsfHIMeQIwlalQr4pdo/5PuoIYTNv+FO91POO4g9NhM2cWiHfVHkKOIw6QthXN3adVeMpdNXH2mNhR4j7KqZuFtR8neKw9zSm4o4QeBZzd7uOeieoyYtHc3GTR4sX27p4k07gOfTwZuZ/d5nzXgugmf0AAAAASUVORK5CYII=">
+<link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAFuUlEQVR4nO3cu3EcRxRA0QeUbCVAhyZMJsAIFK8iQAI0YdJhAkqAMqihFovdnV//+xyTqgK2Su++7gGGfIrGvHz5+rP2ZyCft2+vT7U/w6WqH8awE1E3iuLfeG3of3x/K/VRqODT55eH/710DMW+2b3BN/BzuxdEqRCyf5PrwTfwPHIdRO4Qsn1xg88ZpUJI/kUNPinlDiHpF7scfoNPSpchpIwgyRcy+JSSOoTns1/A8FPS5Yyl+D3SqQAMPzWkjODwEbJ8Y4NPTcuV6Oh16NAJYPhpxTKDR0+C3QEYflpzJoJdARh+WnU0gs0BGH5adySCTQEYfnqxN4LVALyzT6+2zO7mK5DtTy/2zOrDAFx96NXWq9DdAAw/vdsSwel3gaBnNwOw/RnF2ingBGBqHwKw/RnNo1PACcDU3gVg+/fln78f/xs7/O/eKeAE6JThT+N3ALY/o7t1CjgBOrRs/z//sqzOEgBTe47wxmdP3P3TWGb+3Qng/t82w3/e9Yy7AjE1AXTievt7AE5DAEztyc//23fr7u8EOGf5B7WcAI3z4JuXAJiaABp2b/u7/qQjAKYmgEa5+5chgAYZ/nIE0Bn3/7QE0BjbvywBMDUBNMT2L08AjTD8dQigIx6A0xNAA2z/egTA1ARQme1flwAqMvz1CaATHoDzEEAltn8bBMDUBFCB7d8OARRm+NsigA54AM5HAAXZ/u0RAFMTQCG2f5sEUIDhb5cAGucBOC8BZGb7t00ATE0AGdn+7RMAUxNAJim2vwfg/ASQgatPPwTA1ASQmO3fFwE0yv2/DAEkZPv3RwCJGP4+CYCpCSAB279fAmiQB+ByBHCS7d83AZxg+PsnAKYmgINs/zEIoDEegMsSwAG2/zj+qP0BepN7+GvGNePp4wQgIuYc/ggB7OLqMx4BMO32jxDAZqNu/5mHP0IAm4w6/AhgarNv/wgBrBp1+xv+XwTA1ATwgO0/PgHcYfjnIACmJoAbbP95CGAShv82AVwZdftzmwAujDr8tv99Ahic4X9MAP8ZdfvzmAAGZvuvE0CMuf0N/zb+TnCUHZYRY+uZE6CgUsNv+28ngMEY/n0EwNQEMBDbfz8BFJL7/m/4jxEAUxPAAGz/4wTQOcN/jgAK8MuvdgmgY7b/eQLolOFPQwBMTQCZ5bj/2/7pCKAzhj8tATA1AXTE9k9PABmlvP8b/jwEwNQE0AHbPx8BNM7w5yWATLz/0wcBNMz2z08AjTL8ZQiAqQkgg7P3f9u/HAE0xvCXJQCmJoCG2P7lCSCxo/d/w1+HAJiaABpg+9cjgISOXH8Mf10CYGoCqMj2r08AlRj+NgggEa8/90kAFdj+7RBAYYa/LQJgagJIYOv93/ZvjwAKMfxtEgBTE0ABtn+7BHDS2v3f8LdNAExNABnZ/u0TQCaGvw8COMH7P/0TQAa2fz8EkJjh74sAmNrz27fXp4iIT5/dZ/e4df+3/fuwzPrbt9cnJ0Aihr9PAmBqAkjA9u/XuwA8B2xzef83/H25nvHniF8PA1U+DVSyzLwr0Am2f/8EcJDhH8PvAPw+YBvv//Tr8uf/y585AQ6w/cfx4eH35cvXnxERP777n8w4bm3/CCcAk/sQgGcBRnNv+0c4AZjczQCcAozi0faPcAIwubsBOAXo3dr2j1g5AURAr7YMf8SOK5AI6MWeWV0NwJui9GrL7G46AVyF6MXWq89i8xVIBLRu7/BH7PwxqAho1ZHhjzjwewAR0Jqjwx9x8BdhIqAVZ4Y/4sbr0Hssr05HeH2asi6X75mfVJ56FeLyGzsNKCXV8EckeBdIBJSUcvgjTl6BrrkSkUvqwV8k/y3vZQQRQuCc61tF6jcTsr3mIATOyD34i+zv+QiBPUoN/qLYi27XISwEMbd7Pzgp9RJm8Tc974WwEMTY1n5SWPrt46qvOq/FwBxqvnLf3Lv+ohhba3+/5F80GR/mC1HnzwAAAABJRU5ErkJggg==">
+<link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjogIlRyYWluaW5nIFNwZWMiLCAic2hvcnRfbmFtZSI6ICJUcmFpbmluZyIsICJzdGFydF91cmwiOiAiLiIsICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLCAiYmFja2dyb3VuZF9jb2xvciI6ICIjMEQxMDE1IiwgInRoZW1lX2NvbG9yIjogIiMwRDEwMTUiLCAiaWNvbnMiOiBbeyJzcmMiOiAiZGF0YTppbWFnZS9wbmc7YmFzZTY0LGlWQk9SdzBLR2dvQUFBQU5TVWhFVWdBQUFNQUFBQURBQ0FZQUFBQlMzR3dIQUFBRnVVbEVRVlI0bk8zY3UzRWNSeFJBMFFlVWJDVkFoeVpNSnNBSUZLOGlRQUkwWWRKaEFrcUFNcWloRm92ZG5WLy8reHlUcWdLMlN1Kys3Z0dHZklyR3ZIejUrclAyWnlDZnQyK3ZUN1UvdzZXcUg4YXdFMUUzaXVMZmVHM29mM3gvSy9WUnFPRFQ1NWVILzcxMERNVysyYjNCTi9CenV4ZEVxUkN5ZjVQcndUZndQSElkUk80UXNuMXhnODhacFVKSS9rVU5QaW5sRGlIcEY3c2Nmb05QU3BjaHBJd2d5UmN5K0pTU09vVG5zMS9BOEZQUzVZeWwrRDNTcVFBTVB6V2tqT0R3RWJKOFk0TlBUY3VWNk9oMTZOQUpZUGhweFRLRFIwK0MzUUVZZmxwekpvSmRBUmgrV25VMGdzMEJHSDVhZHlTQ1RRRVlmbnF4TjRMVkFMeXpUNisyek83bUs1RHRUeS8yek9yREFGeDk2TlhXcTlEZEFBdy92ZHNTd2VsM2dhQm5Od093L1JuRjJpbmdCR0JxSHdLdy9Sbk5vMVBBQ2NEVTNnVmcrL2Zsbjc4Zi94czcvTy9lS2VBRTZKVGhUK04zQUxZL283dDFDamdCT3JScy96Ly9zcXpPRWdCVGU0N3d4bWRQM1AzVFdHYiszUW5nL3Q4MnczL2U5WXk3QWpFMUFYVGlldnQ3QUU1REFFenR5Yy8vMjNmcjd1OEVPR2Y1QjdXY0FJM3o0SnVYQUppYUFCcDJiL3U3L3FRakFLWW1nRWE1KzVjaGdBWVovbklFMEJuMy83UUUwQmpidnl3Qk1EVUJOTVQyTDA4QWpURDhkUWlnSXg2QTB4TkFBMnovZWdUQTFBUlFtZTFmbHdBcU12ejFDYUFUSG9EekVFQWx0bjhiQk1EVUJGQ0I3ZDhPQVJSbStOc2lnQTU0QU01SEFBWFovdTBSQUZNVFFDRzJmNXNFVUlEaGI1Y0FHdWNCT0M4QlpHYjd0MDBBVEUwQUdkbis3Uk1BVXhOQUppbTJ2d2ZnL0FTUWdhdFBQd1RBMUFTUW1PM2ZGd0UweXYyL0RBRWtaUHYzUndDSkdQNCtDWUNwQ1NBQjI3OWZBbWlRQitCeUJIQ1M3ZDgzQVp4ZytQc25BS1ltZ0lOcy96RUlvREVlZ01zU3dBRzIvemorcVAwQmVwTjcrR3ZHTmVQcDR3UWdJdVljL2dnQjdPTHFNeDRCTU8zMmp4REFacU51LzVtSFAwSUFtNHc2L0FoZ2FyTnYvd2dCckJwMSt4ditYd1RBMUFUd2dPMC9QZ0hjWWZqbklBQ21Kb0FiYlA5NUNHQVNodjgyQVZ3WmRmdHptd0F1akRyOHR2OTlBaGljNFg5TUFQOFpkZnZ6bUFBR1p2dXZFMENNdWYwTi96YitUbkNVSFpZUlkrdVpFNkNnVXNOdisyOG5nTUVZL24wRXdOUUVNQkRiZno4QkZKTDcvbS80anhFQVV4UEFBR3ovNHdUUU9jTi9qZ0FLOE11dmRnbWdZN2IvZVFMb2xPRlBRd0JNVFFDWjViai8yLzdwQ0tBemhqOHRBVEExQVhURTlrOVBBQm1sdlA4Yi9qd0V3TlFFMEFIYlB4OEJOTTd3NXlXQVRMei8wd2NCTk16MnowOEFqVEw4WlFpQXFRa2dnN1AzZjl1L0hBRTB4dkNYSlFDbUpvQ0cyUDdsQ1NDeG8vZC93MStIQUppYUFCcGcrOWNqZ0lTT1hIOE1mMTBDWUdvQ3FNajJyMDhBbFJqK05nZ2dFYTgvOTBrQUZkais3UkJBWVlhL0xRSmdhZ0pJWU92OTMvWnZqd0FLTWZ4dEVnQlRFMEFCdG4rN0JIRFMydjNmOExkTkFFeE5BQm5aL3UwVFFDYUd2dzhDT01IN1AvMFRRQWEyZno4RWtKamg3NHNBbU5yejI3ZlhwNGlJVDUvZFovZTRkZiszL2Z1d3pQcmJ0OWNuSjBBaWhyOVBBbUJxQWtqQTl1L1h1d0E4QjJ4emVmODMvSDI1bnZIbmlGOFBBMVUrRFZTeXpMd3IwQW0yZi84RWNKRGhIOFB2QVB3K1lCdnYvL1RyOHVmL3k1ODVBUTZ3L2NmeDRlSDM1Y3ZYbnhFUlA3NzduOHc0Ym0zL0NDY0FrL3NRZ0djQlJuTnYrMGM0QVpqY3pRQ2NBb3ppMGZhUGNBSXd1YnNCT0FYbzNkcjJqMWc1QVVSQXI3WU1mOFNPSzVBSTZNV2VXVjBOd0p1aTlHckw3RzQ2QVZ5RjZNWFdxODlpOHhWSUJMUnU3L0JIN1B3eHFBaG8xWkhoanpqd2V3QVIwSnFqd3g5eDhCZGhJcUFWWjRZLzRzYnIwSHNzcjA1SGVIMmFzaTZYNzVtZlZKNTZGZUx5R3pzTktDWFY4RWNrZUJkSUJKU1VjdmdqVGw2QnJya1NrVXZxd1Y4ay95M3ZaUVFSUXVDYzYxdEY2amNUc3IzbUlBVE95RDM0aSt6ditRaUJQVW9OL3FMWWkyN1hJU3dFTWJkN1B6Z3A5UkptOFRjOTc0V3dFTVRZMW41U1dQcnQ0NnF2T3EvRndCeHF2bkxmM0x2K29oaGJhMysvNUY4MEdSL21DMUhuendBQUFBQkpSVTVFcmtKZ2dnPT0iLCAic2l6ZXMiOiAiMTkyeDE5MiIsICJ0eXBlIjogImltYWdlL3BuZyJ9LCB7InNyYyI6ICJkYXRhOmltYWdlL3BuZztiYXNlNjQsaVZCT1J3MEtHZ29BQUFBTlNVaEVVZ0FBQWdBQUFBSUFDQVlBQUFEMGVOVDZBQUFTQVVsRVFWUjRuTzNkdTdHanlaR0EwWm9PeXVzQUZZb2owZ0ZhUUh2WGduRmd4QkdwMElGMWdDczBNWDI3K3dMNEgvWElyRHhIWXBBUmpBc01nL2xsMVEvZ2wwWkl2Lzc5SC85Wi9UY0E5UERINzcvOXN2cHY0R2Yrb1N4aXdBTjhKUkRXOEtaUFlOZ0RuQ01LeHZNR0QyRGdBL1FsQ1ByemhuWmc0QVBNSlFqdTh3WmVOSHJvLy90ZmY0ejhyd2VZNXE5LyszWG9mNzhZdU1hYmRrTHZvVy9JQTlYMWpnTXhjSnczNm8wZVE5K2dCemluUnhpSWdkZThPVS9jR2Z3R1BrQmZkNEpBQ0h6T20vS0JvUThRbnhqb3d4dlJyZzErQXg4Z2hpdEJJQVNLQjREQkQ3QVBJWEJPeVJkK2R2QWIrZ0M1bkkyQmlpRlE2Z1ViL0FDMUNJSG5TcnpRTTRQZjBBZlkwNWtZcUJBQzI3L0FvOFBmNEFlbzRXZ0k3QjRCMjc0NGd4K0FWNnFId0hZdnl1QUg0SXlxSWJEVml6a3kvQTErQUQ1ekpBUjJpb0F0WG9qQkQwQXZWVUxneStvLzRDN0RINENlanN5TTBUOEpQMFBxZ25uM0Q4RGdCK0NPZDZjQm1VOENVdjdodG40QVp0bjFTaURkSDJ6ckIyQ0YzVTREVWowRFlQZ0RzTXE3R1pQdHVZQVV0V0x3QXhESkRxY0I0VThBREg4QW90bmhOQ0IwQUJqK0FFU1ZQUUxDSGxHOGV1TU1mZ0FpZVhVbEVQVTZJT1FKZ09FUFFDYXZabFBVazRCd0FXRDRBNUJSdGdnSUZRQ0dQd0NaWllxQU1BRmcrQU93Z3l3UkVPTEJoR2R2aU1FUFFHYlBIZzZNOEdEZzhoTUF3eCtBWFQyYlpSRk9BcFlHZ09FUHdPNmlSc0N5QUREOEFhZ2lZZ1FzQ1FEREg0QnFva1hBOUFBdy9BR29LbElFVEEwQXd4K0E2cUpFd0xRQVdQMndBd0JFTjNOV1Rna0FYL0lEQU45RStMS2dwUjhETlB3QnFHcjFEQndlQU83OUFlQnpLNThIR0JvQWhqOEF2TFlxQW9ZRmdPRVBBTWVzaUlEbHZ3VUFBTXczSkFCcy93Qnd6dXhUZ080QllQZ0R3RFV6STZCckFCaitBSERQckFqd0RBQUFGTlF0QUd6L0FOREhqRk9BTGdGZytBTkFYNk1qd0JVQUFCUjBPd0JzL3dBd3hzaFRnQ0VuQUlZL0FQUXhhcWJlQ29DWnYxc01BSHh6ZHdaZkRnQkgvd0F3eDRpcmdLNVhBSVkvQUl6UmU4WmVDZ0JIL3dBUXc5V1ozTzBFd1BZUEFHUDFuTFduQThEMkR3Q3hYSm5OWFU0QWJQOEFNRWV2bVhzcUFHei9BQkRUMlJsOSt3VEE5ZzhBYy9XWXZZY0R3UFlQQUxHZG1kVzNUZ0JzL3dDd3h0MFpmQ2dBYlA4QWtNUFJtWDM1Qk1EMkR3QnIzWm5GUTM0TkVBQ0k3VzBBT1A0SGdGeU96TzVMSndDTy80RVovdTkvZjEzOUowQjRWMmZ5eXdDdy9RT3JHUDV3ejdzWmZ2b0V3UFlQQUxGY21jMGVBZ1RDZVd6Ly8vTlBDd2VNOGpRQUhQOERRRzZ2WnZtcEV3REgvOEJvN3Y3aG1yTXoyaFVBRUliaEQvTjhHZ0NmSFJuWS9nRWd0czltOWJOckFDY0FRQWcvYnY4ZUFJU3hCQUFBRlBSVEFIajZINWpOM1QrTTlkbHNQM1FDNFA0ZkdNWHdoNzZPem14WEFBQlFrQUFBbG5tMi9Yc0FFTWI3TGdCOC9BOEE4anZ5Y1VBbkFNQVM3djVoTFFFQVRHZjR3M29DQUFBSytqTUEzUDhETTd6Yi9qMEFDSDI4ZXc3QUNRQUFGQ1FBZ0duYy9VTWNBZ0FBQ2hJQXdCUzJmNGpsUzJ0K0FBZ1l5L0NIT0I0ei8ra0pnRThBQUxQNUJBRDA5V3FXdXdJQWhyTDlRMHdDQUFBS0VnREFNTFovaUVzQUFFTVkvaENiQUFCQzhBQWd6Q1VBZ081cy94RGZGejhDQkFEN2V2YWpRRTRBZ0s1cy81Q0RBQUM2TWZ3aER3RUFMT2NCUUpoUEFBQmQyUDRoRndFQUFBVUpBT0EyMnova0l3Q0FXd3gveUVrQUFFdDVBQkRXRUFEQVpiWi95RXNBQUVCQkFnQzR4UFlQdVFrQTREVERIL0lUQU1BeUhnQ0VkUVFBY0lydEgvWWdBQUNnSUFFQUhHYjdoMzBJQU9BUXd4LzJJZ0NBSlR3QUNHc0pBT0F0Mnovc1J3QUFRRUVDQUhqSjlnOTdFZ0RBVTRZLzdFc0FBTk41QUJEV0V3REFwMnovc0RjQkFBQUZDUURnSjdaLzJKOEFBTDVqK0VNTkFnQUFDaElBd0o5bWJQOCtBUUF4Q0FBQUtFZ0FBSzAxZC85UWpRQUFnSUlFQUdEN2g0SUVBQlEzYy9oN0FCRGlFQUFBVUpBQWdNSWMvVU5kQWdBQUNoSUFVSlR0SDJvVEFGRFFpdUh2QVVDSVJRQUFRRUVDQUlweDlBKzBKZ0FBb0NRQkFJWFkvb0VIQVFCRnJCeitIZ0NFZUFRQUFCUWtBS0FBUi8vQWp3UUFBQlFrQUdCenRuL2dNd0lBTmhaaCtIc0FFR0lTQUFCUWtBQ0FUVVhZL29HNEJBQUFGQ1FBWUVPMmYrQWRBUUNiaVRUOFBRQUljUWtBQUNoSUFNQkdJbTMvUUd3Q0FBQUtFZ0N3Q2RzL2NJWUFnQTFFSFA0ZUFJVFlCQUFBRkNRQUlMbUkyejhRbndBQWdJSUVBQ1JtK3dldUVnQ1FWT1RoN3dGQWlFOEFBRUJCQWdBU2lyejlBemtJQUFBb1NBQkFNclovb0FjQkFJa1kva0F2QWdEb3lpY0FJQWNCQUVuWS9vR2VCQUFBRkNRQUlBSGJQOUNiQUFDQWdnUUFCSmRwKy9jQUlPUWhBQ0N3VE1NZnlFVUFBRUJCQWdDQ3N2MERJd2tBQUNoSUFFQkFHYmQvRHdCQ0xnSUFnc2s0L0lGOEJBQUFGQ1FBSUJEYlB6Q0xBQUNBZ2dRQUJKRjUrL2NBSU9RakFDQ0F6TU1meUVrQUFFQkJBZ0FXcy8wREt3Z0FBQ2hJQU1CQ08yei9IZ0NFbkFRQUxMTEQ4QWZ5RWdBQVVKQUFnQVZzLzhCcUFnQUFDaElBTU5sTzI3OEhBQ0V2QVFBVDdUVDhnZHdFQUFBVUpBQmdFdHMvRUlrQUFJQ0NCQUJNc09QMjd3RkF5RTBBd0dBN0RuOGdQd0VBQUFVSkFCakk5ZzlFSlFBQW9DQUJBSVBZL29ISUJBQU1zUHZ3OXdrQXlFOEFBRUJCQWdBNjIzMzdCL1lnQUFDZ0lBRUFIZG4rZ1N3RUFIUlNaZmg3QUJEMklBQUFvQ0FCQUIxVTJmNkJmUWdBQUNoSUFNQk50bjhnSXdFQUhPWUJRTmlIQUlBYmJQOUFWZ0lBTGpMOGdjd0VBQUFVSkFEZ0F0cy9rSjBBQUE3eEFDRHNSUURBU2JaL1lBZC9XZjBIUUNhVmgzL2wxOTZUa3hTaWNBSUFNSW5oVHlRQ0FBNnlBUU03RVFBQUU5aitpVVlBd0FHMmYrNHcvSWxJQU1BYmhqK3dJd0VBTUpEdG42Z0VBTHhnKytjT3c1L0lCQUFBRkNRQTRBbmJQM2ZZL29sT0FNQW5ESC91TVB6SlFBQUFRRUVDQUg1ZysrY08yejlaQ0FDQVRneC9NaEVBOElIdEg2aENBTUIvR2Y3Y1lmc25Hd0VBY0pQaFQwWUNBSnJ0SDZoSEFBRGNZUHNuS3dGQWViWi9yakw4eVV3QVVKcmhEMVFsQUFBdXNQMlRuUUNnTE5zL1Z4bis3RUFBQUVCQkFvQ1NiUDljWmZ0bkZ3S0FjZ3gvcmpMODJZa0FBSUNDQkFDbDJQNjV5dmJQYmdRQXdCdUdQenNTQUpSaCt3ZjRSZ0JRZ3VIUFZiWi9kaVVBQUo0dy9ObVpBR0I3dG4rQW53a0FnRS9ZL3RtZEFHQnJ0bit1TVB5cFFBQUFRRUVDZ0czWi9ybkM5azhWQW9BdEdmNWNZZmhUaVFBQWdJSUVBTnV4L1hPRjdaOXFCQUJRbnVGUFJRS0FyZGorQVk0UkFHekQ4T2NLMno5VkNRQ2dMTU9meWdRQVc3RDlBNXdqQUlDU2JQOVVKd0JJei9iUFdZWS9DQUNTTS93QnJoRUFRQ20yZi9oS0FKQ1c3Wit6REgvNFJnQUFRRUVDZ0pScy81eGwrNGZ2L1dYMUh3QlgrRC96NThUUnovenZCWDdtQkFBQUNoSUFzQkhiLzg5cy8vQTVBUUJzeS9DSDV3UUFzQ1hESDE0VEFBQlFrQUNBVGJqLy84YjJEKzhKQUdBcmhqOGNJd0FBb0NBQkFHekQ5Zy9IQ1FEWWdQdC93eC9PRWdBQVVKQUFBTkt6L2NONUFnQkl6ZkNIYXdRQUpPZitIN2hDQUFCcDJmN2hPZ0VBcEdUNHd6MENBQUFLRWdDUVdOWDdmOXMvM0NjQWdGUU1mK2hEQUFCQVFRSUFTTVAyRC8wSUFFaXEydjIvNFE5OUNRQUFLRWdBQU9IWi9xRS9BUUNFWnZqREdBSUFFcXAyL3cvMEp3Q0FzR3ovTUk0QUFFSXkvR0VzQVFBQUJRa0FTS2JDL2IvdEg4WVRBRUFvaGovTUlRQUFvQ0FCQUlSaCs0ZDVCQUFrc3ZQOXYrRVBjd2tBQUNoSUFBREwyZjVoUGdFQUxHWDR3eG9DQUpMWStmNGZtRThBQU12WS9tRWRBUUFzWWZqRFdnSUFBQW9TQUpEQWJ2Zi90bjlZVHdBQVV4bitFSU1BQUlDQ0JBQXdqZTBmNGhBQUVOd3U5LytHUDhRaUFBQ2dJQUVBREdmN2gzZ0VBRENVNFE4eENRQUliSmY3ZnlBZUFRQU1ZL3VIdUFRQU1JVGhEN0VKQUFBb1NBQkFVSm52LzIzL0VKOEFBTG95L0NFSEFRQUFCUWtBb0J2YlArUWhBQ0NnalBmL2hqL2tJZ0FBb0NBQkFOeG0rNGQ4QkFCd2krRVBPUWtBQ0Niai9UK1Fqd0FBTHJQOVExNENBTGpFOElmY0JBQUFGQ1FBSUpBczkvKzJmOGhQQUFDbkdQNndCd0VBQUFVSkFPQXcyei9zUXdCQUVOSHYvdzEvMklzQUFJQ0NCQUR3bHUwZjlpTUFnSmNNZjlpVEFJQUFvdC8vQS9zUkFNQlR0bi9ZbHdBQVBtWDR3OTRFQUFBVUpBQmdzWWozLzdaLzJKOEFBTDVqK0VNTkFnQUFDaElBd0o5cy8xQ0hBSUNGSXQzL0cvNVFpd0FBZ0lJRUFHRDdoNElFQUJSbitFTk5BZ0FXaVhUL0Q5UWpBS0F3MnovVUpRQ2dLTU1mYWhNQUFGQ1FBSUFGVnQvLzIvNEJBUURGR1A1QWF3SUFBRW9TQUZDSTdSOTRFQUF3MmFyN2Y4TWYrRWdBQUVCQkFnQUtzUDBEUHhJQXNEbkRIL2lNQUlDSlZuLytIK0JCQU1ER2JQL0FNd0lBTm1YNEE2OElBQUFvU0FEQUpEUHYvMjMvd0RzQ0FEWmorQU5IQ0FBQUtFZ0F3RVpzLzhCUkFnQW1tSEgvYi9nRFp3Z0FBQ2hJQU1BR2JQL0FXUUlBa2pQOGdTc0VBQXcyOHY3ZjhBZXVFZ0FBVUpBQWdLUnMvOEFkQWdBU012eUJ1d1FBRERUeisvOEJ6aEFBa0l6dEgraEJBRUFpaGovUWl3QUFnSUlFQUF6UysvN2Y5Zy8wSkFBZ0FjTWY2RTBBQUVCQkFnQ0NzLzBESXdnQUdLRFgvYi9oRDR3aUFBQ2dJQUVBUWRuK2daRUVBQVJrK0FPakNRRG96UGYvQXhrSUFBakc5Zy9NSUFBZ0VNTWZtRVVBQUVCQkFnQTZ1blAvYi9zSFpoSUFFSURoRDh3bUFBQ2dvQzkvL1A3Ykx6LyttMy85bTQ4eHdTeTJmMkNrejJiNkg3Ly85b3NUQU9qa3l2Mi80UStzSWdBQW9DQUJBSXZZL29HVkJBQXNZUGdEcXdrQTZNRDMvd1BaQ0FDWXpQWVBSUEEwQUh3VUVQb3ovSUdaWHMzeUw2MTkvVHpndEw4R0FGam1NZk5kQWNCTlIrLy9iZjlBSkFJQUpqRDhnV2dFQUFBVUpBQmdNTnMvRU5HZkFlQkhnZUM4ZC9mL2hqK3d5ck1mQVhyOGF5Y0FBRkNRQUlCQmJQOUFaQUlBQmpEOGdlaStDd0RQQWNCeHZ2OGZpT3JkL1g5clRnQ2dPOXMva0lFQWdJNE1meUNMUXdIZ0dnQUFjamc2czM4S0FEOE1CTzk5ZHY5dit3ZWkrbXkydXdLQURneC9JQnNCQUFBRmZSb0FQZzRJeDluK2dTaU9mUHp2d1FrQW5QVHgvdC93QjdJNkZRQk9BUUFncHJNeitta0ErRFFBdkdiN0I2SjdOY3RkQWNBRmhqK1EzZWtBY0ExQVpiNy9INGpveW14K0dRQ3VBZUJudG44Z2czY3ovTklWZ0ZNQXFqTDhnV2l1enVTM0FlQVVBQUJ5T1RLN1BRUUlBQVZkRGdEWEFBQ3cxcDFaZkNnQVhBTUFRQTVIWi9hdEt3Q25BQUN3eHQwWmZEZ0FuQUlBUUd4blp2WHRod0NkQWdEQVhEMW03NmtBY0FvQUFER2RuZEZkUGdib0ZBQUE1dWcxYzA4SGdGTUFBSWpseW16dTlrVkFUZ0VBWUt5ZXMvWlNBRGdGQUlBWXJzN2tybDhGN0JRQUFNYm9QV012QjhDejRoQUJBTkRYczlsNjUwVCsxZ21BcXdBQVdPUHVEQjd5YTRCT0FRQ2dqMUV6OVhZQXVBb0FnREZHSFAwL0REa0JBQUJpNnhJQVRnRUFvSytSMjM5ckhVOEFSQUFBOURGNitMZm1DZ0FBU3VvYUFFNEJBT0NlR2R0L2F3Tk9BRVFBQUZ3emEvaTNOdWdLUUFRQXdEa3poMzlybmdFQWdKS0dCWUJUQUFBNFp2YjIzOXJnRXdBUkFBQ3ZyUmorclUyNEFoQUJBUEM1VmNPL3RjWFBBSWdBQUtwYVBRT25CTUNya2xuOUJnREFiSzltMzR6dHY3V0pKd0N6WGhBQVpEVnpWazY5QXZBOEFBRFZyYnozLzJqNk13QWlBSUNxb2d6LzFoWTlCQ2dDQUtnbTB2QnZiZUduQUVRQUFGVkVHLzZ0TGY0WW9BZ0FZSGNSaDM5ckFYNExRQVFBc0t1b3c3KzExcGIvQVErLy92MGYvM24ybi8zN1gzL00vRk1BNEpZSW4vTi9aL2tKd0lNdkN3SmdCeG1HZjJ1QkFxQTFFUUJBYmxtR2YydkJBcUExRVFCQVRwbUdmMnNCQTZBMUVRQkFMdG1HZjJ1QkhnTDh6S3NIQTF2emNDQUFhNzFiU3FNTy85YUNuZ0E4dkh2am5BWUFzRXJtNGQ5YThBQm9UUVFBRUUvMjRkOWE4Q3VBSDdrU0FHQ2xIUWIvUS9nVGdJK2NCZ0N3eWs3RHY3VmtKd0FQNzA0Q1duTWFBRUFmUjViTGJNTy90YVFCOE9CS0FJQ1JkdHY2UDByN2h6ODREUUNndDEyMy9vOVNQUVB3bVNQL0FEd2JBTUJSRllaL2F4dWNBSHprTkFDQXE2b00vb2R0WHNqRGtRaG9UUWdBOE5YUlUrS2RobjlyR3diQWd4QUE0SldxZy85aHl4ZjFrUkFBNEtQcWcvOWg2eGYzY0RRQ1doTUNBTHM2ODBENDdzTy90U0lCOEhBbUJGb1RBd0RabmYwVVdJWEIvMURtaFg0a0JBRDJadkMvVis0RmYzUTJCRm9UQXdCUlhmbk9sNHFELzZIc0MvOUlDQURrWmZCZlUvNE4rT2hLQ0R3SUFvQTU3bnk3cThIL2pUZmlDVEVBRUllaDM1ODM1WTA3SWZBZ0NBRE82ZkViTGdiL2E5NmNFM3JFd0VmQ0FLaXU5NCsxR2ZySGVhTXU2aDBEUHhJSHdDNUcveUtyb1grTk42MkQwVEVBd1BjTS9mdThnUU1JQW9DK0RQeit2S0VUQ0FLQWN3ejg4YnpCaTRnQ2dLOE0relc4NlVFSkJHQVhCbnhNL3c4RDVvNDRIZzE2ZlFBQUFBQkpSVTVFcmtKZ2dnPT0iLCAic2l6ZXMiOiAiNTEyeDUxMiIsICJ0eXBlIjogImltYWdlL3BuZyJ9XX0=">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0D1015;--panel:#151A22;--panel2:#1B212C;--line:#28303D;--text:#ECEFF4;--muted:#8B94A5;--dim:#5A6373;--signal:#FFC53D;--calm:#4FD1C5;--cool:#6E9BFF;--radius:14px}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;background:var(--ink);color:var(--text)}
+body{font-family:"Space Grotesk",system-ui,sans-serif;font-size:16px;line-height:1.45;max-width:560px;margin:0 auto;padding-bottom:calc(60px + env(safe-area-inset-bottom));-webkit-font-smoothing:antialiased}
+header{position:sticky;top:0;z-index:20;background:rgba(13,16,21,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:calc(14px + env(safe-area-inset-top)) 16px 0}
+.brand{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px}
+.brand h1{font-size:15px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin:0}
+.brand .sub{font-family:"Space Mono",monospace;font-size:11px;color:var(--dim);letter-spacing:.05em}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:12px;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;min-width:52px;border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:8px 10px 7px;text-align:center;cursor:pointer;color:var(--muted);transition:.18s cubic-bezier(.2,.7,.2,1);display:flex;flex-direction:column;align-items:center;gap:3px;user-select:none}
+.tab:active{transform:scale(.94)}
+.tab .dnum{font-family:"Space Mono",monospace;font-weight:700;font-size:18px;line-height:1}
+.tab .dtype{width:5px;height:5px;border-radius:50%;background:var(--dim)}
+.tab.info{min-width:auto;padding:8px 14px;justify-content:center}.tab.info .dnum{font-size:13px;letter-spacing:.1em}
+.tab[data-type="work"] .dtype{background:var(--signal)}.tab[data-type="recovery"] .dtype{background:var(--calm)}
+.tab.active{color:var(--text)}
+.tab.active[data-type="work"]{border-color:var(--signal);background:rgba(255,197,61,.12)}
+.tab.active[data-type="recovery"]{border-color:var(--calm);background:rgba(79,209,197,.12)}
+.tab.active.info{border-color:var(--cool);background:rgba(110,155,255,.12)}
+main{padding:18px 16px 0}
+.dayhead{margin-bottom:14px}
+.dayhead .eyebrow{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.dayhead .kw{font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.08em;color:var(--dim)}
+.chip-tag{font-family:"Space Mono",monospace;font-size:11px;padding:3px 8px;border-radius:20px;border:1px solid}
+.work .chip-tag{color:var(--signal);border-color:rgba(255,197,61,.4)}.recovery .chip-tag{color:var(--calm);border-color:rgba(79,209,197,.4)}
+.dayhead h2{font-size:26px;font-weight:700;line-height:1.1;margin:2px 0 0;letter-spacing:-.01em}
+.tophint{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:8px 0 16px}
+.tophint .h{font-family:"Space Mono",monospace;font-size:11px;color:var(--dim);line-height:1.4}
+.tophint .h b{color:var(--cool);font-weight:700}
+.resetbtn{font-family:"Space Mono",monospace;font-size:10px;color:var(--muted);background:transparent;border:1px solid var(--line);border-radius:7px;padding:5px 8px;cursor:pointer;white-space:nowrap;transition:.15s}
+.resetbtn:active{transform:scale(.94)}.resetbtn:hover{border-color:var(--muted)}
+.warmup{background:var(--panel2);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;margin-bottom:16px}
+.warmup .lbl{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--calm);margin-bottom:5px}
+.warmup p{margin:0;font-size:14px;color:var(--muted);line-height:1.5}
+.restday{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px 18px;text-align:center}
+.restday .big{font-size:20px;font-weight:600;margin-bottom:8px}.restday p{margin:0;color:var(--muted);font-size:15px;line-height:1.55}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:12px;margin-bottom:10px}
+.card.optional{border-style:dashed}
+.cardtop{display:flex;align-items:center;gap:10px;margin-bottom:11px}
+.mark{font-family:"Space Mono",monospace;font-weight:700;font-size:12px;color:var(--signal);background:rgba(255,197,61,.10);border:1px solid rgba(255,197,61,.28);border-radius:7px;padding:3px 7px;min-width:34px;text-align:center;flex:0 0 auto;line-height:1.3}
+.metcon .mark{color:var(--calm);background:rgba(79,209,197,.10);border-color:rgba(79,209,197,.28)}
+.tierbar{display:flex;gap:4px;margin-left:auto}
+.seg{font-family:"Space Mono",monospace;font-size:9.5px;letter-spacing:.02em;text-transform:uppercase;color:var(--dim);background:transparent;border:1px solid var(--line);border-radius:6px;padding:4px 7px;cursor:pointer;transition:.15s}
+.seg.on{color:var(--ink);background:var(--signal);border-color:var(--signal);font-weight:700}
+.metcon .seg.on{background:var(--calm);border-color:var(--calm)}
+.seg:active{transform:scale(.92)}
+.tierview{overflow:hidden;border-radius:10px;touch-action:pan-y}
+.tiertrack{display:flex;width:300%;transition:transform .3s cubic-bezier(.2,.75,.2,1)}
+.tiertrack.dragging{transition:none}
+.tierslide{width:33.3333%;flex:0 0 33.3333%}
+.exname .nm{font-size:16.5px;font-weight:600;line-height:1.2}
+.exname .sub{font-size:12.5px;color:var(--dim);margin-top:2px}
+.optflag{font-family:"Space Mono",monospace;font-size:10px;color:var(--dim);border:1px solid var(--line);border-radius:5px;padding:1px 5px;margin-left:6px}
+.data{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px}
+.stat{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:5px 9px;display:flex;flex-direction:column;gap:1px}
+.stat .k{font-family:"Space Mono",monospace;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--dim)}
+.stat .v{font-family:"Space Mono",monospace;font-size:14px;font-weight:700;color:var(--text)}
+.stat.reps .v{color:var(--signal)}.metcon .stat.reps .v{color:var(--calm)}
+.note{margin-top:10px;font-size:13px;color:var(--muted);line-height:1.5}
+.dots{display:flex;align-items:center;gap:7px;margin-top:11px;flex-wrap:wrap}
+.dots .dlbl{font-family:"Space Mono",monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+.dot{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--line);background:transparent;cursor:pointer;transition:transform .12s,background .12s,border-color .12s;padding:0}
+.dot.on{background:var(--signal);border-color:var(--signal)}
+.metcon .dot.on{background:var(--calm);border-color:var(--calm)}
+.dot:active{transform:scale(1.2)}
+.dot.pop{animation:pop .28s ease}
+@keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.32)}100%{transform:scale(1)}}
+.superset{position:relative;margin-bottom:10px;padding-left:14px}
+.superset::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:3px;border-radius:3px;background:linear-gradient(var(--cool),rgba(110,155,255,.35))}
+.ss-tag{display:flex;align-items:center;gap:8px;margin:0 0 8px 2px;flex-wrap:wrap}
+.ss-tag .t{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--cool)}
+.ss-tag .rounds{font-family:"Space Mono",monospace;font-size:10px;color:var(--dim);border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+.ss-title{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.05em;color:var(--muted);text-transform:uppercase}
+.superset .card{margin-bottom:8px}.superset .card:last-child{margin-bottom:0}.blocklabel{margin:0 0 8px 2px}
+.infoblock{margin-bottom:22px}
+.infoblock h3{font-size:12px;font-family:"Space Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--signal);margin:0 0 10px;font-weight:700}
+.recoveryhead{color:var(--calm)!important}.coolhead{color:var(--cool)!important}
+.deflist{display:flex;flex-direction:column;gap:9px}
+.def{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.def .term{font-family:"Space Mono",monospace;font-size:13px;font-weight:700;margin-bottom:3px}.def .desc{font-size:13px;color:var(--muted);line-height:1.5}
+.principle{background:linear-gradient(160deg,rgba(255,197,61,.07),rgba(21,26,34,.4));border:1px solid rgba(255,197,61,.25);border-radius:var(--radius);padding:14px}
+.principle p{margin:0 0 8px;font-size:14px;line-height:1.55}.principle p:last-child{margin:0}.principle .gov{color:var(--signal);font-weight:600}
+ul.rules{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+ul.rules li{font-size:13.5px;color:var(--muted);line-height:1.5;padding-left:16px;position:relative}ul.rules li::before{content:"—";position:absolute;left:0;color:var(--cool)}
+table.prog{width:100%;border-collapse:collapse;font-size:12.5px}
+table.prog th,table.prog td{border:1px solid var(--line);padding:8px 9px;text-align:left;vertical-align:top}
+table.prog th{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim);font-weight:400;background:var(--panel)}
+table.prog td:first-child{font-family:"Space Mono",monospace;color:var(--signal);white-space:nowrap}table.prog td{color:var(--muted)}
+.dangerbtn{font-family:"Space Mono",monospace;font-size:11px;color:#ff8080;background:transparent;border:1px solid rgba(255,128,128,.4);border-radius:8px;padding:9px 12px;cursor:pointer;width:100%;margin-top:4px}
+footer{text-align:center;padding:24px 16px calc(10px + env(safe-area-inset-bottom));color:var(--dim);font-family:"Space Mono",monospace;font-size:10.5px;letter-spacing:.05em;line-height:1.7}
+#view{animation:fade .26s cubic-bezier(.2,.7,.2,1)}
+.card{animation:rise .32s cubic-bezier(.2,.7,.2,1) both}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){#view,.card{animation:none}.tiertrack{transition:none}}
+</style></head>
 <body>
-    <div id="particles-js"></div>
-    <div id="event-horizon"></div>
-    <div class="content">
-        <h1>INUNI</h1>
-        <div class="tagline">coming soon...</div>
-    </div>
-    <div class="contact">
-        <a href="mailto:arya@getuni.app">Contact Us</a>
-        <div class="copyright">&copy; 2024 Amorphic Labs. All rights reserved.</div>
-    </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const particlesContainer = document.getElementById('particles-js');
-            const eventHorizon = document.getElementById('event-horizon');
-            let particleCount = 100;
-            const particles = [];
-            let horizonRadius = Math.min(window.innerWidth, window.innerHeight) * 0.1;
-            let startTime = Date.now();
+<header>
+<div class="brand"><h1>Training&nbsp;Spec</h1><span class="sub">explosive · power</span></div>
+<nav class="tabs" id="tabs" aria-label="Select day"></nav>
+</header>
+<main id="view"></main>
+<footer>Your levels &amp; ticks are saved on this device · add to Home Screen for full-screen</footer>
+<script>
+const DAYS=[{"n": 1, "name": "Power + Upper Strength", "tag": "Freshest day", "type": "work", "warmup": "Pogo hops 3×10 · Double-under skill 3×40–60 (build to crossovers/unbroken) · Light swings 2×10 · Med ball throws 2×5/side", "blocks": [{"items": [{"mark": "A", "tiers": [["Depth Jumps", "5×3", "X", "2.5 min", "off box, land→explode", "Quality only — stop when pop drops."], ["Box Jumps", "5×3", "X", "2 min", "step down, never jump down", "Reset each rep; land soft."], ["Squat Jumps", "5×5", "X", "90s", "bodyweight, max height", "Soft landings, no box."]]}]}, {"items": [{"mark": "B", "tiers": [["Barbell Bench Press", "4×5", "3-1-1-0", "2–3 min", "", "RIR 2–3. Use safeties — never near-max alone."], ["DB Bench Press", "4×8", "3-1-1-0", "2 min", "", "Safer solo — nothing to pin you."], ["Push-ups", "4×8–15", "3-1-1-0", "90s", "feet elevated to scale up", "Add vest / pause for difficulty."]]}]}, {"superset": "4 rounds", "items": [{"mark": "C1", "tiers": [["L-sit / Weighted Pull-ups", "4×5–6", "2-1-2-0", "—", "", "Full dead-hang = loaded lat stretch."], ["Strict Pull-ups", "4×5–8", "2-1-2-0", "—", "", "Full range, no kip."], ["Band-assisted Pull-ups / Inverted Rows", "4×8–10", "2-1-2-0", "—", "", "Build the pull; keep it strict."]]}, {"mark": "C2", "tiers": [["Wall Handstand Push-ups", "4×6–8", "2-0-X", "90s", "", "Controlled to the floor."], ["Pike Push-ups (feet elevated)", "4×6–10", "2-0-X", "90s", "", "Hips high, press overhead."], ["Pike Push-ups (floor) / Seated DB Press", "4×8–12", "2-0-X", "90s", "", "Vertical push pattern."]]}]}, {"superset": "4 rounds", "items": [{"mark": "D1", "tiers": [["Weighted Dips", "4×6–8", "3-1-1-0", "—", "deep — loaded stretch", "Sink to real stretch; control depth to shoulder."], ["Bodyweight Dips", "4×6–10", "3-1-1-0", "—", "", "Full range, no bounce."], ["Bench Dips / Band-assisted Dips", "4×8–12", "3-1-1-0", "—", "", "Feet forward to ease load."]]}, {"mark": "D2", "tiers": [["Incline DB Curls", "4×10–12", "3-1-1-0", "90s", "shoulder extension → stretch", "Full hang + pause. Bench ~45–60°."], ["Standing DB Curls", "4×10–12", "3-1-1-0", "90s", "", "Less stretch demand; strict."], ["Seated Hammer Curls", "4×12–15", "2-0-1-0", "75s", "", "Neutral grip, elbow-friendly."]]}]}, {"items": [{"mark": "E", "optional": true, "tiers": [["Overhead Tricep Extension", "2–3×12", "3-0-1-0", "60s", "long-head stretch", "Optional — dips cover mid/lateral heads."], ["Single-arm Overhead Extension", "2–3×12", "3-0-1-0", "60s", "", "Optional — easier to control range."], ["Band Pressdowns / Bench Dips", "2–3×12–15", "2-0-1-0", "45s", "", "Optional — lowest joint stress."]]}]}, {"superset": "3 rounds", "title": "Ab finisher", "items": [{"mark": "F1", "tiers": [["Toes-to-Bar", "3×10–15", "X up · 2s down", "—", "", "Full hang to bar."], ["Hanging Knee Raises", "3×10–15", "2-0-2-0", "—", "", "Knees to chest, no swing."], ["Lying Leg Raises", "3×12–15", "2-0-2-0", "—", "", "Press low back down."]]}, {"mark": "F2", "tiers": [["Hanging Windshield Wipers", "3×6–8/side", "controlled", "60s", "", "Anti-rotation under load."], ["Lying Windshield Wipers", "3×8–10/side", "controlled", "60s", "", "Knees bent to ease."], ["Dead Bug", "3×10/side", "controlled", "45s", "", "Ribs down, slow."]]}]}]}, {"n": 2, "name": "Aerobic / Recovery", "tag": "Easy", "type": "recovery", "rest": "Easy-moderate run (conversational, 20–40 min) and/or swim. Nothing hard — this builds the engine and helps you recover."}, {"n": 3, "name": "Lower Strength + Posterior Chain", "tag": "Hard hamstring day", "type": "work", "warmup": "Hip mobility · Glute bridges 2×10 · Leg swings · Light swings 2×10", "blocks": [{"items": [{"mark": "A", "tiers": [["Single-leg / Deficit KB Deadlift", "4×6", "3-1-X-0", "2 min", "", "Deficit = more hamstring stretch → add depth GRADUALLY (the governor)."], ["Double-KB Deadlift", "4×6–8", "3-1-X-0", "2 min", "", "Flat back, drive up fast."], ["KB / DB RDL (light)", "4×8–10", "3-0-1-0", "90s", "", "Short range, controlled — protect the hamstring."]]}]}, {"items": [{"mark": "B", "tiers": [["Bulgarian Split Squat", "4×8", "3-1-1-0", "90–120s", "↑ pistol / shrimp", "Full depth — the stretch IS the point."], ["Goblet Squat", "4×8–10", "3-1-1-0", "90s", "", "Upright; let the pelvis move naturally."], ["Box Squat", "4×8–10", "2-1-1-0", "90s", "", "Sit to box — knee/depth friendly."]]}]}, {"items": [{"mark": "C", "tiers": [["Nordic Curl", "4×4–6", "4-0-X", "2 min", "eccentric-loaded", "Slow eccentric IS the point — never rush, never for time."], ["Band-assisted Nordic", "4×5–8", "4-0-X", "2 min", "", "Band takes the bottom range."], ["Stability-ball Hamstring Curls", "4×10–12", "2-1-2-0", "90s", "", "Knee-flexion + bridge; low strain."]]}]}, {"items": [{"mark": "D", "tiers": [["Weighted Back Extension", "3×12", "2-1-2-1", "90s", "", "Pause + squeeze at top."], ["Bodyweight Back Extension", "3×12–15", "2-1-2-1", "75s", "", "Control, no bounce."], ["Glute Bridge / Hip Thrust", "3×12–15", "2-1-2-1", "60s", "", "Floor-based, back-friendly."]]}]}, {"superset": "3 rounds", "title": "Ab / anti-rotation finisher", "items": [{"mark": "E1", "tiers": [["Standing Ab-Wheel Rollout", "3×6–8", "3-0-1", "—", "", "Ribs down, no low-back sag."], ["Kneeling Ab-Wheel Rollout", "3×8–10", "3-0-1", "—", "", "Shorter lever."], ["Front Plank", "3×30–45s", "hold", "—", "", "Squeeze glutes, brace."]]}, {"mark": "E2", "tiers": [["Half-kneeling Pallof Press", "3×10/side", "2-1-2 hold", "60s", "", "Resist rotation."], ["Tall-kneeling Pallof Press", "3×10/side", "2-1-2 hold", "60s", "", "Wider base, easier."], ["Standing Pallof Press", "3×10–12/side", "2-1-2 hold", "45s", "", "Lighter band."]]}]}]}, {"n": 4, "name": "Swim or Full Rest", "tag": "Zero-impact", "type": "recovery", "rest": "Zero-impact by design — placed right after your hardest eccentric day so the tissue recovers."}, {"n": 5, "name": "Explosive Conditioning", "tag": "Double-under centric", "type": "work", "metcon": true, "warmup": "As Day 1 potentiation.", "blocks": [{"items": [{"mark": "·", "tiers": [["Consecutive Broad Jumps / Bounding", "4×3", "X", "full recovery", "power primer", "Snappy, not fatiguing."], ["Standing Broad Jump", "4×3", "X", "full recovery", "", "Single jump, reset each rep."], ["Squat Jumps", "4×5", "X", "60s", "", "Vertical, soft landings."]]}]}, {"title": "A · Double-under engine block", "items": [{"mark": "A", "tiers": [["Double-Under Engine", "see note", "X", "", "pick one, alternate weekly", "EMOM 10 min — 45–55 DUs/min (adv: crossovers/triples on odd rounds). OR 8×(45s DUs / 15s rest)."], ["Double-Unders — short sets", "see note", "X", "", "", "10×(20–25 DUs / 30s rest). Unbroken quality over volume."], ["Single-Unders (fast)", "see note", "X", "", "", "10×(50 fast singles / 20s rest). Sprinkle in DU attempts."]]}]}, {"superset": "5 rounds", "title": "B · Ballistic couplet — rest to keep reps CLEAN (not AMRAP)", "items": [{"mark": "·", "tiers": [["Single-arm / Heavy KB Swings", "×15", "X", "", "", "Explosive hip snap."], ["Two-arm KB Swings", "×15", "X", "", "", "Chest-height; hinge not squat."], ["KB Hip Hinge (light)", "×15", "2-0-1", "", "", "Groove the pattern, low load."]]}, {"mark": "·", "tiers": [["Med Ball Rotational Throws", "×6/side", "X", "", "", "Heavier ball, full rotation."], ["Med Ball Rotational Throws (light)", "×8/side", "X", "", "", "Speed over load."], ["Med Ball Chest Pass / Slam", "×8", "X", "", "", "No rotation — straight-plane power."]]}, {"mark": "·", "tiers": [["Double-Unders", "×50", "X", "", "", "Your conditioning currency."], ["Double-Unders", "×25", "X", "", "", "Fewer reps, keep clean."], ["Single-Unders", "×75–100", "X", "", "", "Fast singles for the engine."]]}]}, {"items": [{"mark": "C", "tiers": [["Heavy Farmer / Front-rack Carries", "3–4 × 30–40m", "", "as needed", "", "Your sled replacement."], ["Farmer Carries (moderate)", "3–4 × 30–40m", "", "as needed", "", "Tall posture, braced."], ["Suitcase Carry (light)", "3 × 20–30m", "", "as needed", "", "One side; anti-lean."]]}]}]}, {"n": 6, "name": "Easy Run or Vest Walk / Hills", "tag": "Aerobic, easy", "type": "recovery", "rest": "Vest = walk / hills / stairs / easy run only. No vest sprinting — it stacks eccentric load exactly where the hamstrings are vulnerable. Sprints stay clean and unloaded."}, {"n": 7, "name": "Full Rest", "tag": "Recover", "type": "recovery", "rest": "Full rest. This is where the adaptation actually happens — the sequencing only works if the recovery days stay easy."}];
+const TL=["Adv","Easier","Easiest"];
+const LS={get(k,d){try{const v=localStorage.getItem(k);return v===null?d:JSON.parse(v)}catch(e){return d}},
+         set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}},
+         del(k){try{localStorage.removeItem(k)}catch(e){}}};
+const tabsEl=document.getElementById('tabs'),viewEl=document.getElementById('view');
+let current=LS.get('tspec:day',1);
 
-            function setEventHorizonSize() {
-                const centerX = window.innerWidth / 2;
-                const centerY = window.innerHeight / 2;
-                eventHorizon.style.width = horizonRadius * 2 + 'px';
-                eventHorizon.style.height = horizonRadius * 2 + 'px';
-                eventHorizon.style.left = centerX - horizonRadius + 'px';
-                eventHorizon.style.top = centerY - horizonRadius + 'px';
-            }
+DAYS.forEach(d=>{const b=document.createElement('button');b.className='tab';b.dataset.type=d.type;b.dataset.n=d.n;
+ b.innerHTML='<span class="dnum">'+d.n+'</span><span class="dtype"></span>';
+ b.setAttribute('aria-label','Day '+d.n+': '+d.name);b.onclick=()=>select(d.n);tabsEl.appendChild(b);});
+const info=document.createElement('button');info.className='tab info';info.dataset.n='info';
+info.innerHTML='<span class="dnum">INFO</span>';info.onclick=()=>select('info');tabsEl.appendChild(info);
 
-            function createParticle() {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                particle.style.width = Math.random() * 3 + 1 + 'px';
-                particle.style.height = particle.style.width;
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particlesContainer.appendChild(particle);
-                return particle;
-            }
+function esc(s){return (s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function firstInt(s){const m=(s||'').match(/^\s*(\d+)/);return m?parseInt(m[1]):0}
+function tierKey(ctx){return 'tspec:tier:'+ctx}
+function tickKey(ctx,t){return 'tspec:tick:'+ctx+':'+t}
 
-            function animateParticle(particle) {
-                const centerX = window.innerWidth / 2;
-                const centerY = window.innerHeight / 2;
-                const x = particle.offsetLeft - centerX;
-                const y = particle.offsetTop - centerY;
-                const distance = Math.sqrt(x*x + y*y);
-                const angle = Math.atan2(y, x);
-                
-                let animationDuration = (distance / window.innerWidth) * 10000;
-                let scale = 1;
-                let opacity = 0.5;
-
-                if (distance <= horizonRadius + 10) {
-                    const stickPoint = horizonRadius + Math.random() * 10;
-                    const stickX = Math.cos(angle) * stickPoint;
-                    const stickY = Math.sin(angle) * stickPoint;
-                    animationDuration = 100000;
-                    scale = 0.5 + (horizonRadius - distance) / horizonRadius;
-                    opacity = 1;
-
-                    const keyframes = [
-                        { transform: 'translate(0, 0) scale(1)', opacity: 0.5 },
-                        { transform: `translate(${stickX - x}px, ${stickY - y}px) scale(${scale})`, opacity: opacity }
-                    ];
-                    
-                    const animation = particle.animate(keyframes, {
-                        duration: animationDuration,
-                        iterations: 1,
-                        fill: 'forwards',
-                        easing: 'ease-out'
-                    });
-
-                    return animation;
-                }
-
-                const keyframes = [
-                    { transform: 'translate(0, 0) scale(1)', opacity: 0.5 },
-                    { transform: `translate(${-x}px, ${-y}px) scale(${scale})`, opacity: opacity }
-                ];
-                
-                const animation = particle.animate(keyframes, {
-                    duration: animationDuration,
-                    iterations: 1,
-                    fill: 'forwards',
-                    easing: 'ease-in-out'
-                });
-
-                return animation;
-            }
-
-            function updateParticles() {
-                const elapsedTime = (Date.now() - startTime) / 1000;
-                const targetParticleCount = Math.min(500, Math.floor(100 + elapsedTime * 10));
-
-                while (particles.length < targetParticleCount) {
-                    const particle = createParticle();
-                    particles.push(particle);
-                    animateParticle(particle);
-                }
-
-                // Increase the thickness of the event horizon over time
-                const thickness = Math.min(20, 5 + elapsedTime * 0.5);
-                eventHorizon.style.boxShadow = `0 0 ${thickness}px ${thickness / 2}px rgba(255, 255, 255, 0.3)`;
-
-                requestAnimationFrame(updateParticles);
-            }
-
-            setEventHorizonSize();
-            updateParticles();
-
-            window.addEventListener('resize', setEventHorizonSize);
-        });
-    </script>
-</body>
-</html>
+function slide(t,ctx,tier){
+ const [nm,sets,tempo,rest,sub,note]=t;
+ let h='<div style="padding:2px 2px 0">';
+ h+='<div class="exname"><div class="nm">'+esc(nm)+'</div>'+(sub?'<div class="sub">'+esc(sub)+'</div>':'')+'</div>';
+ h+='<div class="data"><div class="stat reps"><span class="k">Sets × Reps</span><span class="v">'+esc(sets||'—')+'</span></div>';
+ if(tempo)h+='<div class="stat"><span class="k">Tempo</span><span class="v">'+esc(tempo)+'</span></div>';
+ if(rest)h+='<div class="stat"><span class="k">Rest</span><span class="v">'+esc(rest)+'</span></div>';
+ h+='</div>';
+ if(note)h+='<div class="note">'+esc(note)+'</div>';
+ const n=firstInt(sets);
+ if(n&&n<=8){const st=LS.get(tickKey(ctx,tier),[]);h+='<div class="dots"><span class="dlbl">Done</span>';
+  for(let i=0;i<n;i++)h+='<button class="dot '+(st[i]?'on':'')+'" data-ctx="'+ctx+'" data-tier="'+tier+'" data-i="'+i+'" aria-label="Set '+(i+1)+'"></button>';
+  h+='</div>';}
+ return h+'</div>';
+}
+function exCard(item,ctx){
+ const cur=Math.min(2,Math.max(0,LS.get(tierKey(ctx),0)));
+ const opt=item.optional?' optional':'';
+ const flag=item.optional?'<span class="optflag">optional</span>':'';
+ let segs='<div class="tierbar">';
+ item.tiers.forEach((t,i)=>segs+='<button class="seg '+(i===cur?'on':'')+'" data-ctx="'+ctx+'" data-t="'+i+'">'+TL[i]+'</button>');
+ segs+='</div>';
+ let slides='';item.tiers.forEach((t,i)=>slides+='<div class="tierslide">'+slide(t,ctx,i)+'</div>');
+ return '<div class="card'+opt+'" data-ctx="'+ctx+'"><div class="cardtop"><span class="mark">'+esc(item.mark)+'</span>'+flag+segs+'</div>'+
+  '<div class="tierview"><div class="tiertrack" style="transform:translateX('+(-cur*33.3333)+'%)">'+slides+'</div></div></div>';
+}
+function renderDay(d){
+ let h='<div class="dayhead '+d.type+'"><div class="eyebrow"><span class="kw">DAY '+d.n+'</span><span class="chip-tag">'+esc(d.tag)+'</span></div><h2>'+esc(d.name)+'</h2></div>';
+ if(d.rest&&!d.blocks)return h+'<div class="restday"><div class="big">'+esc(d.name)+'</div><p>'+esc(d.rest)+'</p></div>';
+ h+='<div class="tophint"><span class="h">Swipe cards or tap <b>Adv/Easier/Easiest</b></span><button class="resetbtn" id="resetDay">Reset ticks</button></div>';
+ if(d.warmup)h+='<div class="warmup"><div class="lbl">Warm-up</div><p>'+esc(d.warmup)+'</p></div>';
+ h+=d.metcon?'<div class="metcon">':'<div>';
+ d.blocks.forEach((blk,bi)=>{
+  if(blk.superset){h+='<div class="superset"><div class="ss-tag"><span class="t">⌇ Superset</span><span class="rounds">'+esc(blk.superset)+'</span>'+(blk.title?'<span class="ss-title">'+esc(blk.title)+'</span>':'')+'</div>';
+   blk.items.forEach((it,ii)=>h+=exCard(it,d.n+'-'+bi+'-'+ii));h+='</div>';}
+  else{if(blk.title)h+='<div class="blocklabel"><span class="ss-title">'+esc(blk.title)+'</span></div>';
+   blk.items.forEach((it,ii)=>h+=exCard(it,d.n+'-'+bi+'-'+ii));}
+ });
+ return h+'</div>';
+}
+function renderInfo(){return `
+<div class="dayhead"><div class="eyebrow"><span class="kw">REFERENCE</span></div><h2>How it works</h2></div>
+<div class="infoblock"><h3 class="coolhead">Levels &amp; memory</h3><div class="def"><div class="desc">Swipe a card or tap <b>Adv / Easier / Easiest</b> to change level — each is a real regression movement. Your chosen level and every set tick are <b>saved on this device</b> and restored next time you open it.</div></div></div>
+<div class="infoblock"><h3>Legend</h3><div class="deflist">
+<div class="def"><div class="term">Tempo e-p-c-p</div><div class="desc">Seconds: eccentric · pause (bottom) · concentric · pause (top). <b>X</b> = explosive.</div></div>
+<div class="def"><div class="term">RIR</div><div class="desc">Reps in reserve — lower = harder.</div></div>
+<div class="def"><div class="term">⌇ Superset</div><div class="desc">Bracketed moves run back-to-back for the same rounds; rest after the pair.</div></div>
+<div class="def"><div class="term">Power work</div><div class="desc">Always quality-based. Stop when height or speed drops.</div></div></div></div>
+<div class="infoblock"><h3>The one principle</h3><div class="principle">
+<p><b>Lengthened-position bias.</b> Favor the variation that loads the muscle stretched, and control the eccentric to reach it.</p>
+<p class="gov">Governor: for hamstrings the stretched position is the most productive AND the most injury-relevant — add range gradually.</p></div></div>
+<div class="infoblock"><h3 class="coolhead">Sequencing</h3><ul class="rules">
+<li>Three hamstring stressors 48h apart: plyos (D1) → heavy hinge + Nordics (D3) → swings (D5).</li>
+<li>Hardest eccentric day (3) → zero-impact recovery (4).</li>
+<li>Power before conditioning; power before fatigue.</li>
+<li>Sprints: Day 1 only, fresh and unloaded.</li>
+<li>Core = anti-movement + rotational power.</li></ul></div>
+<div class="infoblock"><h3>Progression</h3><table class="prog">
+<tr><th>Block</th><th>Main lifts</th><th>Power</th><th>Metcon</th></tr>
+<tr><td>Wk 1–3</td><td>RIR 3–4</td><td>quality</td><td>4 rounds</td></tr>
+<tr><td>Wk 4–6</td><td>RIR 2–3 +load</td><td>+1 rep</td><td>5 rounds</td></tr>
+<tr><td>Wk 7+</td><td>RIR 1–2</td><td>+height</td><td>cut rest OR add load</td></tr></table>
+<p style="font-size:13px;color:var(--muted);margin-top:10px">Deload every 4–6 wks: volume −40%, keep intensity.</p></div>
+<div class="infoblock"><h3 class="recoveryhead">4-day version</h3><div class="def"><div class="desc">Keep Days <b>1, 3, 5</b> + one easy aerobic day.</div></div></div>
+<div class="infoblock"><h3>Data</h3><button class="dangerbtn" id="wipe">Clear all saved levels &amp; ticks</button></div>`;
+}
+function select(n){
+ current=n;LS.set('tspec:day',n);
+ [...tabsEl.children].forEach(t=>t.classList.toggle('active',t.dataset.n==String(n)));
+ if(n==='info'){viewEl.innerHTML=renderInfo();const w=document.getElementById('wipe');if(w)w.onclick=wipeAll;}
+ else{viewEl.innerHTML=renderDay(DAYS.find(d=>d.n===n));bindDay();}
+ viewEl.style.animation='none';void viewEl.offsetWidth;viewEl.style.animation='';
+ window.scrollTo(0,0);
+}
+function setTier(ctx,t){
+ t=Math.max(0,Math.min(2,t));LS.set(tierKey(ctx),t);
+ const card=viewEl.querySelector('.card[data-ctx="'+ctx+'"]');if(!card)return;
+ card.querySelector('.tiertrack').style.transform='translateX('+(-t*33.3333)+'%)';
+ card.querySelectorAll('.seg').forEach((s,i)=>s.classList.toggle('on',i===t));
+}
+function bindDay(){
+ const rd=document.getElementById('resetDay');if(rd)rd.onclick=()=>resetDayTicks();
+ viewEl.querySelectorAll('.seg').forEach(s=>s.onclick=()=>setTier(s.dataset.ctx,+s.dataset.t));
+ viewEl.querySelectorAll('.dot').forEach(dot=>dot.onclick=()=>{
+  const k=tickKey(dot.dataset.ctx,dot.dataset.tier),i=+dot.dataset.i;
+  const st=LS.get(k,[]);st[i]=!st[i];LS.set(k,st);
+  dot.classList.toggle('on',st[i]);if(st[i]){dot.classList.remove('pop');void dot.offsetWidth;dot.classList.add('pop');}
+ });
+ viewEl.querySelectorAll('.card').forEach(card=>{
+  const ctx=card.dataset.ctx,view=card.querySelector('.tierview'),track=card.querySelector('.tiertrack');
+  if(!view||!track)return;let x0=null,y0=null,drag=false,w=0;
+  view.addEventListener('touchstart',e=>{x0=e.touches[0].clientX;y0=e.touches[0].clientY;drag=false;w=view.offsetWidth;},{passive:true});
+  view.addEventListener('touchmove',e=>{if(x0==null)return;const dx=e.touches[0].clientX-x0,dy=e.touches[0].clientY-y0;
+   if(!drag&&Math.abs(dx)>Math.abs(dy)+4){drag=true;track.classList.add('dragging');}
+   if(drag){const cur=LS.get(tierKey(ctx),0);let off=-cur*w+dx;off=Math.max(-2*w,Math.min(0,off));track.style.transform='translateX('+off+'px)';}},{passive:true});
+  view.addEventListener('touchend',e=>{if(drag){const dx=e.changedTouches[0].clientX-x0;const cur=LS.get(tierKey(ctx),0);
+   let t=cur;if(dx<-40)t=cur+1;else if(dx>40)t=cur-1;track.classList.remove('dragging');track.style.transform='';setTier(ctx,t);}x0=null;drag=false;});
+ });
+}
+function resetDayTicks(){
+ const d=DAYS.find(x=>x.n===current);if(!d||!d.blocks)return;
+ d.blocks.forEach((blk,bi)=>blk.items.forEach((it,ii)=>{for(let t=0;t<3;t++)LS.del(tickKey(d.n+'-'+bi+'-'+ii,t));}));
+ select(current);
+}
+function wipeAll(){try{Object.keys(localStorage).filter(k=>k.startsWith('tspec:')&&k!=='tspec:day').forEach(k=>localStorage.removeItem(k));}catch(e){}select('info');alert('Cleared.');}
+select(current);
+</script>
+</body></html>
