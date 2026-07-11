@@ -143,6 +143,24 @@ footer{text-align:center;padding:24px 16px calc(10px + env(safe-area-inset-botto
 .timer.running:not(.paused):not(.done) .tdisp{animation:tblink 1s steps(1) infinite}
 @keyframes tblink{50%{opacity:.6}}
 @media (prefers-reduced-motion:reduce){.timer .tdisp{animation:none}}
+/* workout spotlight (active timer) + exit control */
+.exitfocus{position:fixed;top:calc(12px + env(safe-area-inset-top));right:14px;z-index:60;display:none;font-family:"Space Mono",monospace;font-size:12px;color:var(--muted);background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:9px 13px;cursor:pointer}
+.exitfocus:active{transform:scale(.94)}
+body.timing .exitfocus{display:block}
+body.timing header,body.timing footer,body.timing .dayhead,body.timing .dayswitch,body.timing .tophint,body.timing .warmup,body.timing .blocklabel,body.timing .ss-tag{display:none!important}
+body.timing .card:not(.focus),body.timing .restday:not(.focus){display:none!important}
+body.timing .superset{padding:0;margin:0}
+body.timing .superset::before{display:none}
+body.timing #view{padding-top:58px}
+body.timing .focus{border-color:var(--signal)}
+.metcon .focus{border-color:var(--calm)}
+body.timing .restday.focus{border-color:var(--calm)}
+body.timing .focus .timer{border-top:1px solid var(--line);margin-top:18px;padding-top:18px;flex-wrap:wrap;justify-content:center;gap:12px 14px}
+body.timing .focus .tlabel{order:-1;width:100%;min-width:0;text-align:center;font-size:13px;color:var(--muted)}
+body.timing .focus .tdisp{width:100%;min-width:0;text-align:center;font-size:64px;line-height:1}
+body.timing .focus .tstart{margin-left:0;font-size:15px;padding:14px 30px;min-width:120px}
+body.timing .focus .treset{font-size:18px;padding:14px 18px}
+body.timing .focus .exname .nm{font-size:21px}
 </style></head>
 <body>
 <header>
@@ -150,6 +168,7 @@ footer{text-align:center;padding:24px 16px calc(10px + env(safe-area-inset-botto
 <nav class="tabs" id="tabs" aria-label="Select day"></nav>
 </header>
 <main id="view"></main>
+<button id="exitFocus" class="exitfocus" aria-label="Exit workout view">✕ Exit</button>
 <footer>Your levels &amp; ticks are saved on this device · add to Home Screen for full-screen</footer>
 <script>
 const DAYS=[{"n": 1, "name": "Power + Upper Strength", "tag": "Freshest day", "type": "work", "warmup": "Pogo hops 3×10 · Double-under skill 3×40–60 (build to crossovers/unbroken) · Light swings 2×10 · Med ball throws 2×5/side", "blocks": [{"items": [{"mark": "A", "tiers": [["Depth Jumps", "5×3", "X", "2.5 min", "off box, land→explode", "Quality only — stop when pop drops."], ["Box Jumps", "5×3", "X", "2 min", "step down, never jump down", "Reset each rep; land soft."], ["Squat Jumps", "5×5", "X", "90s", "bodyweight, max height", "Soft landings, no box."]]}]}, {"items": [{"mark": "B", "tiers": [["Barbell Bench Press", "4×5", "3-1-1-0", "2–3 min", "", "RIR 2–3. Use safeties — never near-max alone."], ["DB Bench Press", "4×8", "3-1-1-0", "2 min", "", "Safer solo — nothing to pin you."], ["Push-ups", "4×8–15", "3-1-1-0", "90s", "feet elevated to scale up", "Add vest / pause for difficulty."]]}]}, {"superset": "4 rounds", "items": [{"mark": "C1", "tiers": [["L-sit / Weighted Pull-ups", "4×5–6", "2-1-2-0", "—", "", "Full dead-hang = loaded lat stretch."], ["Strict Pull-ups", "4×5–8", "2-1-2-0", "—", "", "Full range, no kip."], ["Band-assisted Pull-ups / Inverted Rows", "4×8–10", "2-1-2-0", "—", "", "Build the pull; keep it strict."]]}, {"mark": "C2", "tiers": [["Wall Handstand Push-ups", "4×6–8", "2-0-X", "90s", "", "Controlled to the floor."], ["Pike Push-ups (feet elevated)", "4×6–10", "2-0-X", "90s", "", "Hips high, press overhead."], ["Pike Push-ups (floor) / Seated DB Press", "4×8–12", "2-0-X", "90s", "", "Vertical push pattern."]]}]}, {"superset": "4 rounds", "items": [{"mark": "D1", "tiers": [["Weighted Dips", "4×6–8", "3-1-1-0", "—", "deep — loaded stretch", "Sink to real stretch; control depth to shoulder."], ["Bodyweight Dips", "4×6–10", "3-1-1-0", "—", "", "Full range, no bounce."], ["Bench Dips / Band-assisted Dips", "4×8–12", "3-1-1-0", "—", "", "Feet forward to ease load."]]}, {"mark": "D2", "tiers": [["Incline DB Curls", "4×10–12", "3-1-1-0", "90s", "shoulder extension → stretch", "Full hang + pause. Bench ~45–60°."], ["Standing DB Curls", "4×10–12", "3-1-1-0", "90s", "", "Less stretch demand; strict."], ["Seated Hammer Curls", "4×12–15", "2-0-1-0", "75s", "", "Neutral grip, elbow-friendly."]]}, {"mark": "D3", "optional": true, "tiers": [["Overhead Tricep Extension", "4×10–12", "3-0-1-0", "60s", "long-head stretch", "Optional 3rd station — long-head focus the dips miss; full stretch overhead."], ["Single-arm Overhead Extension", "4×10–12", "3-0-1-0", "60s", "", "Optional 3rd station — easier to control the range one arm at a time."], ["Band Pressdowns / Bench Dips", "4×12–15", "2-0-1-0", "45s", "", "Optional 3rd station — lowest joint stress."]]}]}, {"superset": "3 rounds", "title": "Ab finisher", "items": [{"mark": "E1", "tiers": [["Toes-to-Bar", "3×10–15", "X up · 2s down", "—", "", "Full hang to bar."], ["Hanging Knee Raises", "3×10–15", "2-0-2-0", "—", "", "Knees to chest, no swing."], ["Lying Leg Raises", "3×12–15", "2-0-2-0", "—", "", "Press low back down."]]}, {"mark": "E2", "tiers": [["Hanging Windshield Wipers", "3×6–8/side", "controlled", "60s", "", "Anti-rotation under load."], ["Lying Windshield Wipers", "3×8–10/side", "controlled", "60s", "", "Knees bent to ease."], ["Dead Bug", "3×10/side", "controlled", "45s", "", "Ribs down, slow."]]}]}]}, {"n": 2, "name": "Aerobic / Recovery", "tag": "Easy", "type": "recovery", "rest": "Easy-moderate run (conversational, 20–40 min) and/or swim. Nothing hard — this builds the engine and helps you recover."}, {"n": 3, "name": "Lower Strength + Posterior Chain", "tag": "Hard hamstring day", "type": "work", "warmup": "Hip mobility · Glute bridges 2×10 · Leg swings · Light swings 2×10", "blocks": [{"items": [{"mark": "A", "tiers": [["Single-leg / Deficit KB Deadlift", "4×6", "3-1-X-0", "2 min", "", "Deficit = more hamstring stretch → add depth GRADUALLY (the governor)."], ["Double-KB Deadlift", "4×6–8", "3-1-X-0", "2 min", "", "Flat back, drive up fast."], ["KB / DB RDL (light)", "4×8–10", "3-0-1-0", "90s", "", "Short range, controlled — protect the hamstring."]]}]}, {"items": [{"mark": "B", "tiers": [["Bulgarian Split Squat", "4×8", "3-1-1-0", "90–120s", "↑ pistol / shrimp", "Full depth — the stretch IS the point."], ["Goblet Squat", "4×8–10", "3-1-1-0", "90s", "", "Upright; let the pelvis move naturally."], ["Box Squat", "4×8–10", "2-1-1-0", "90s", "", "Sit to box — knee/depth friendly."]]}]}, {"items": [{"mark": "C", "tiers": [["Nordic Curl", "4×4–6", "4-0-X", "2 min", "eccentric-loaded", "Slow eccentric IS the point — never rush, never for time."], ["Band-assisted Nordic", "4×5–8", "4-0-X", "2 min", "", "Band takes the bottom range."], ["Stability-ball Hamstring Curls", "4×10–12", "2-1-2-0", "90s", "", "Knee-flexion + bridge; low strain."]]}]}, {"items": [{"mark": "D", "tiers": [["Weighted Back Extension", "3×12", "2-1-2-1", "90s", "", "Pause + squeeze at top."], ["Bodyweight Back Extension", "3×12–15", "2-1-2-1", "75s", "", "Control, no bounce."], ["Glute Bridge / Hip Thrust", "3×12–15", "2-1-2-1", "60s", "", "Floor-based, back-friendly."]]}]}, {"superset": "3 rounds", "title": "Ab / anti-rotation finisher", "items": [{"mark": "E1", "tiers": [["Standing Ab-Wheel Rollout", "3×6–8", "3-0-1", "—", "", "Ribs down, no low-back sag."], ["Kneeling Ab-Wheel Rollout", "3×8–10", "3-0-1", "—", "", "Shorter lever."], ["Front Plank", "3×30–45s", "hold", "—", "", "Squeeze glutes, brace."]]}, {"mark": "E2", "tiers": [["Half-kneeling Pallof Press", "3×10/side", "2-1-2 hold", "60s", "", "Resist rotation."], ["Tall-kneeling Pallof Press", "3×10/side", "2-1-2 hold", "60s", "", "Wider base, easier."], ["Standing Pallof Press", "3×10–12/side", "2-1-2 hold", "45s", "", "Lighter band."]]}]}]}, {"n": 4, "name": "Swim or Full Rest", "tag": "Zero-impact", "type": "recovery", "rest": "Zero-impact by design — placed right after your hardest eccentric day so the tissue recovers."}, {"n": 5, "name": "Explosive Conditioning", "tag": "Double-under centric", "type": "work", "metcon": true, "warmup": "As Day 1 potentiation.", "blocks": [{"items": [{"mark": "·", "tiers": [["Consecutive Broad Jumps / Bounding", "4×3", "X", "full recovery", "power primer", "Snappy, not fatiguing."], ["Standing Broad Jump", "4×3", "X", "full recovery", "", "Single jump, reset each rep."], ["Squat Jumps", "4×5", "X", "60s", "", "Vertical, soft landings."]]}]}, {"title": "A · Double-under engine block", "items": [{"mark": "A", "tiers": [["Double-Under Engine", "see note", "X", "", "pick one, alternate weekly", "EMOM 10 min — 45–55 DUs/min (adv: crossovers/triples on odd rounds). OR 8×(45s DUs / 15s rest)."], ["Double-Unders — short sets", "see note", "X", "", "", "10×(20–25 DUs / 30s rest). Unbroken quality over volume."], ["Single-Unders (fast)", "see note", "X", "", "", "10×(50 fast singles / 20s rest). Sprinkle in DU attempts."]]}]}, {"superset": "5 rounds", "title": "B · Ballistic couplet — rest to keep reps CLEAN (not AMRAP)", "items": [{"mark": "·", "tiers": [["Single-arm / Heavy KB Swings", "×15", "X", "", "", "Explosive hip snap."], ["Two-arm KB Swings", "×15", "X", "", "", "Chest-height; hinge not squat."], ["KB Hip Hinge (light)", "×15", "2-0-1", "", "", "Groove the pattern, low load."]]}, {"mark": "·", "tiers": [["Med Ball Rotational Throws", "×6/side", "X", "", "", "Heavier ball, full rotation."], ["Med Ball Rotational Throws (light)", "×8/side", "X", "", "", "Speed over load."], ["Med Ball Chest Pass / Slam", "×8", "X", "", "", "No rotation — straight-plane power."]]}, {"mark": "·", "tiers": [["Double-Unders", "×50", "X", "", "", "Your conditioning currency."], ["Double-Unders", "×25", "X", "", "", "Fewer reps, keep clean."], ["Single-Unders", "×75–100", "X", "", "", "Fast singles for the engine."]]}]}, {"items": [{"mark": "C", "tiers": [["Heavy Farmer / Front-rack Carries", "3–4 × 30–40m", "", "as needed", "", "Your sled replacement."], ["Farmer Carries (moderate)", "3–4 × 30–40m", "", "as needed", "", "Tall posture, braced."], ["Suitcase Carry (light)", "3 × 20–30m", "", "as needed", "", "One side; anti-lean."]]}]}]}, {"n": 6, "name": "Easy Run or Vest Walk / Hills", "tag": "Aerobic, easy", "type": "recovery", "rest": "Vest = walk / hills / stairs / easy run only. No vest sprinting — it stacks eccentric load exactly where the hamstrings are vulnerable. Sprints stay clean and unloaded."}, {"n": 7, "name": "Full Rest", "tag": "Recover", "type": "recovery", "rest": "Full rest. This is where the adaptation actually happens — the sequencing only works if the recovery days stay easy."}];
@@ -161,7 +180,7 @@ const LS={get(k,d){try{const v=localStorage.getItem(k);return v===null?d:JSON.pa
          del(k){try{localStorage.removeItem(k)}catch(e){}}};
 const tabsEl=document.getElementById('tabs'),viewEl=document.getElementById('view');
 let current=LS.get('tspec:day',1);
-let TMR=null,timerAC=null;
+let TMR=null,timerAC=null,wakeLock=null;
 
 DAYS.forEach(d=>{const b=document.createElement('button');b.className='tab';b.dataset.type=d.type;b.dataset.n=d.n;
  b.innerHTML='<span class="dnum">'+WD2[d.n-1]+'</span><span class="dtype"></span>';
@@ -250,6 +269,18 @@ function renderInfo(){return `
 <div class="infoblock"><h3 class="recoveryhead">4-day version</h3><div class="def"><div class="desc">Keep <b>Mon / Wed / Fri</b> + one easy aerobic day.</div></div></div>
 <div class="infoblock"><h3>Data</h3><button class="dangerbtn" id="wipe">Clear all saved levels &amp; ticks</button></div>`;
 }
+/* ---- keep-awake + workout spotlight ---- */
+function acquireWake(){try{if('wakeLock'in navigator&&!wakeLock){navigator.wakeLock.request('screen').then(w=>{wakeLock=w;w.addEventListener('release',()=>{wakeLock=null;});}).catch(()=>{});}}catch(e){}}
+function releaseWake(){try{if(wakeLock){const w=wakeLock;wakeLock=null;w.release().catch(()=>{});}}catch(e){}}
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&TMR&&TMR.running)acquireWake();});
+function enterFocus(ctx){
+ document.body.classList.add('timing');
+ viewEl.querySelectorAll('.focus').forEach(c=>c.classList.remove('focus'));
+ const t=viewEl.querySelector('.timer[data-ctx="'+ctx+'"]'),host=t&&t.closest('.card,.restday');
+ if(host)host.classList.add('focus');
+ window.scrollTo(0,0);
+}
+function exitFocus(){document.body.classList.remove('timing');viewEl.querySelectorAll('.focus').forEach(c=>c.classList.remove('focus'));}
 /* ---- timers ---- */
 function parseSeconds(str){
  if(!str)return null;
@@ -302,7 +333,7 @@ function paintTimer(){
  st.textContent=TMR.done?'Restart':(TMR.running?'Pause':'Resume');
 }
 function stopTimer(){
- if(!TMR)return;const prev=TMR.ctx;if(TMR.iv)clearInterval(TMR.iv);TMR=null;
+ if(!TMR)return;const prev=TMR.ctx;if(TMR.iv)clearInterval(TMR.iv);TMR=null;releaseWake();exitFocus();
  const el=document.querySelector('.timer[data-ctx="'+prev+'"]');if(el)timerSetIdle(el,prev);
 }
 function startTimer(ctx){
@@ -311,14 +342,14 @@ function startTimer(ctx){
  if(spec.mode==='up'){TMR.elapsed=0;TMR.startedAt=Date.now();}
  else if(spec.mode==='interval'){TMR.remaining=spec.phases[0].sec;TMR.endAt=Date.now()+TMR.remaining*1000;}
  else{TMR.remaining=spec.seconds||0;TMR.endAt=Date.now()+TMR.remaining*1000;}
- ensureAC();TMR.iv=setInterval(timerTick,200);paintTimer();
+ ensureAC();acquireWake();TMR.iv=setInterval(timerTick,200);enterFocus(ctx);paintTimer();
 }
 function pauseTimer(){
  if(!TMR)return;if(TMR.mode==='up')TMR.elapsed=(Date.now()-TMR.startedAt)/1000;else TMR.remaining=(TMR.endAt-Date.now())/1000;
- TMR.running=false;if(TMR.iv)clearInterval(TMR.iv);TMR.iv=null;paintTimer();
+ TMR.running=false;if(TMR.iv)clearInterval(TMR.iv);TMR.iv=null;releaseWake();paintTimer();
 }
 function resumeTimer(){
- if(!TMR)return;TMR.running=true;ensureAC();
+ if(!TMR)return;TMR.running=true;ensureAC();acquireWake();
  if(TMR.mode==='up')TMR.startedAt=Date.now()-TMR.elapsed*1000;else TMR.endAt=Date.now()+TMR.remaining*1000;
  TMR.iv=setInterval(timerTick,200);paintTimer();
 }
@@ -333,13 +364,14 @@ function timerTick(){
  if(rem>0){TMR.remaining=rem;paintTimer();return;}
  if(TMR.mode==='interval'){
   if(TMR.phaseIdx<TMR.spec.phases.length-1)TMR.phaseIdx++;else{TMR.phaseIdx=0;TMR.round++;}
-  if(TMR.round>TMR.spec.rounds){beep('end');TMR.remaining=0;TMR.done=true;TMR.running=false;clearInterval(TMR.iv);TMR.iv=null;paintTimer();return;}
+  if(TMR.round>TMR.spec.rounds){beep('end');TMR.remaining=0;TMR.done=true;TMR.running=false;clearInterval(TMR.iv);TMR.iv=null;releaseWake();paintTimer();return;}
   beep('phase');TMR.remaining=TMR.spec.phases[TMR.phaseIdx].sec;TMR.endAt=now+TMR.remaining*1000;paintTimer();
- }else{beep('end');TMR.remaining=0;TMR.done=true;TMR.running=false;clearInterval(TMR.iv);TMR.iv=null;paintTimer();}
+ }else{beep('end');TMR.remaining=0;TMR.done=true;TMR.running=false;clearInterval(TMR.iv);TMR.iv=null;releaseWake();paintTimer();}
 }
 function select(n){
  current=n;LS.set('tspec:day',n);
- if(TMR){if(TMR.iv)clearInterval(TMR.iv);TMR=null;}
+ if(TMR){if(TMR.iv)clearInterval(TMR.iv);TMR=null;releaseWake();}
+ exitFocus();
  [...tabsEl.children].forEach(t=>t.classList.toggle('active',t.dataset.n==String(n)));
  if(n==='info'){viewEl.innerHTML=renderInfo();const w=document.getElementById('wipe');if(w)w.onclick=wipeAll;}
  else{viewEl.innerHTML=renderDay(DAYS.find(d=>d.n===n));bindDay();}
@@ -373,7 +405,8 @@ function bindDay(){
  refreshDaySwitch();
  viewEl.querySelectorAll('.timer').forEach(el=>{const ctx=el.dataset.ctx;timerSetIdle(el,ctx);
   el.querySelector('.tstart').onclick=()=>{if(TMR&&TMR.ctx===ctx&&!TMR.done){TMR.running?pauseTimer():resumeTimer();}else startTimer(ctx);};
-  el.querySelector('.treset').onclick=()=>resetTimer(ctx);});
+  el.querySelector('.treset').onclick=()=>resetTimer(ctx);
+  el.querySelector('.tdisp').onclick=()=>{if(TMR&&TMR.ctx===ctx)enterFocus(ctx);};});
  viewEl.querySelectorAll('.seg').forEach(s=>s.onclick=()=>setTier(s.dataset.ctx,+s.dataset.t));
  viewEl.querySelectorAll('.dot').forEach(dot=>dot.onclick=()=>{
   const k=tickKey(dot.dataset.ctx,dot.dataset.tier),i=+dot.dataset.i;
@@ -397,6 +430,7 @@ function resetDayTicks(){
  select(current);
 }
 function wipeAll(){try{Object.keys(localStorage).filter(k=>k.startsWith('tspec:')&&k!=='tspec:day').forEach(k=>localStorage.removeItem(k));}catch(e){}select('info');alert('Cleared.');}
+document.getElementById('exitFocus').onclick=exitFocus;
 select(current);
 </script>
 </body></html>
